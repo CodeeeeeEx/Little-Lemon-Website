@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- meta标签是非常重要的对于企业开发项目以及个人商用项目，用最通俗的语言来说就是结合了SEO搜索引擎优化来达到吸引流量提升流量的效果，只要是商用项目必使用该标签 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 视图，响应式-->
+    <meta name="description" content="小柠檬餐厅 - 提供新鲜美味的家常菜，周末享30%优惠，支持在线订座"> <!-- 解释，介绍 -->
+    <meta name="author" content="小柠檬餐厅运营团队"> <!-- 作者 -->
+    <meta name="keywords" content="小柠檬餐厅，美食，订座，优惠活动"> <!-- 关键词 -->
+    <title>小柠檬餐厅 - 首页</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="page-header"> <!-- 语义化标签，头部 -->
+        <div class="logo-container">
+            <img src="https://picsum.photos/60/60?img=1083" alt="小柠檬餐厅官方徽标" class="main-logo">
+            <h1 class="logo-title">小柠檬餐厅</h1>
+        </div>
+        <nav class="main-nav"> <!-- 语义化标签，引导栏 -->
+            <ul class="nav-list"> <!-- 列表项里的各个内容 -->
+                <li class="nav-item"><a href="#" class="nav-link current">首页</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">菜单</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">在线订座</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-main"> <!-- 语义化标签，正文部分 -->
+        <section class="promo-banner"> <!-- 语义化标签，页面的「独立内容区块」标签（核心：划分 “功能模块”），如果没有该标签直接使用div那么搜索引擎爬虫将无法清楚这个是什么板块 -->
+            <div class="banner-content">
+                <h2 class="banner-title">周末专属福利：全场30%优惠</h2>
+                <p class="banner-desc">活动时间：本周六至周日，到店消费即可享受全场菜品8折优惠，转发朋友圈额外赠送柠檬特饮，数量有限，先到先得！</p>
+                <a href="#" class="banner-btn">立即预约享优惠</a>
+            </div>
+        </section>
+
+        <section class="content-container">
+            <h3 class="content-title visually-hidden">餐厅核心服务</h3>
+            <article class="content-card"> <!-- 语义化标签，文章部分 -->
+                <h4 class="card-title">全新夏季菜单</h4>
+                <figure class="card-figure"> <!-- 语义化标签，与figcaption联动，表示图片存放的位置以及给图片存放留有一个空间而非直接放置img标签 -->
+                    <img src="https://picsum.photos/400/250?img=292" alt="夏季新菜单：柠檬烤鸡配蔬菜沙拉" class="card-img">
+                    <figcaption class="card-figcaption">清爽可口，低脂健康</figcaption> <!-- 语义化标签，对于图片的文本介绍 -->
+                </figure>
+                <p class="card-desc">今夏全新推出12款柠檬主题菜品，精选新鲜柠檬与优质食材搭配，拒绝添加剂，还原食材本身的鲜味，满足你对夏日美食的所有想象。</p>
+                <a href="#" class="card-link">查看完整菜单 →</a>
+            </article>
+
+            <article class="content-card">
+                <h4 class="card-title">在线便捷订座</h4>
+                <figure class="card-figure">
+                    <img src="https://picsum.photos/400/250?img=431" alt="餐厅雅致用餐环境，灯光柔和舒适" class="card-img">
+                    <figcaption class="card-figcaption">雅致环境，贴心服务</figcaption>
+                </figure>
+                <p class="card-desc">无需到店排队，在线即可选择用餐日期、时间和座位类型，填写联系方式后即可完成订座，订座成功后将收到短信提醒，方便快捷。</p>
+                <a href="#" class="card-link">立即在线订座 →</a>
+            </article>
+
+            <article class="content-card">
+                <h4 class="card-title">门店营业时间</h4>
+                <figure class="card-figure">
+                    <img src="https://picsum.photos/400/250?img=365" alt="餐厅厨师正在精心准备菜品" class="card-img">
+                    <figcaption class="card-figcaption">新鲜现做，每日限量</figcaption>
+                </figure>
+                <p class="card-desc">我们坚持每日新鲜采购食材，限量供应特色菜品，如需品尝招牌菜，建议提前订座或咨询门店。</p>
+                <ul class="business-hours">
+                    <li class="hours-item">周一至周五：14:00 - 22:00</li>
+                    <li class="hours-item">周六：12:00 - 23:00</li>
+                    <li class="hours-item">周日：12:00 - 21:00</li>
+                    <li class="hours-item">法定节假日：10:00 - 23:00</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="review-section">
+            <h3 class="review-title">顾客真实评价</h3>
+            <div class="review-list">
+                <article class="review-card">
+                    <p class="review-content">"柠檬烤鸡超级好吃，肉质鲜嫩，搭配沙拉很解腻，周末优惠也很划算，已经推荐给朋友了!"</p>
+                    <p class="review-author">—— 李女士（五星好评）</p>
+                </article>
+                <article class="review-card">
+                    <p class="review-content">"环境很雅致，服务态度很好，在线订座很方便，不用排队，招牌柠檬茶必点，下次还会再来。"</p>
+                    <p class="review-author">—— 张先生（五星好评）</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="page-footer"> <!-- 语义化标签，页尾 -->
+        <div class="footer-logo">
+            <img src="https://picsum.photos/40/40?img=1083" alt="小柠檬餐厅小徽标" class="footer-logo-img">
+        </div>
+        <div class="footer-info"> <!-- 页尾文本 -->
+            <p class="copyright">© 2026 小柠檬餐厅 版权所有，禁止盗用</p>
+            <address class="contact-info">联系地址：北京市朝阳区建国路88号小柠檬大厦1层</address> <!-- address，语义化标签，用于包裹联系地址、联系方式等信息 -->
+        </div>
+    </footer>
+</body>
+</html>
+
+<!-- 
+    总结：所以整个.html文件当中最重要的就是语义化标签内容，从meta到header到nav到main到section到article然后figure和figcaption
+    再到最后的footer。整体上就是围绕着语义化标签来进行编写和说明，这是非常重要的内容在html里，下面复习一下把这个排版图给画出来⬇：
+    
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta>
+        <meta>
+        <meta>
+        ...
+        <title>
+
+        </title>
+        <link rel="stylesheet" href="#"></link>
+    </head>
+    <body>
+        <header>
+            <nav>
+
+            </nav>
+        </header>
+        <main>
+            <section>
+
+                <article>
+
+                    <figure>
+
+                        <figcaption>
+
+                        </figcapotion>
+                        
+                    </figure>
+                </article>
+            </section>
+        <footer> 
+
+        </footer>
+
+
+
+
+
+
+
+-->
