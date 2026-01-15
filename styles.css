@@ -1,0 +1,83 @@
+/* A.全局配置效果 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* B.用Flex实现【导航横向排列】 */
+/* 1.导航容器：main-nav（先给nav设置宽度，方便居中） */
+.main-nav {
+    width: 100%;
+    max-width: 600px;
+    margin:0 auto; /* 导航栏水平居中 */
+}
+/* 2.导航列表：nav-list（核心：开启Flex实现横向排列 */
+.nav-list {
+    display: flex;
+    justify-content: space-around; /* 关键属性：子元素均匀分布，左右无间距 */
+    list-style: none; /* 删除默认列表符号，美化效果 */
+    gap: 10px; /* 子元素之间的间距 */
+}
+/* 3.导航项：链接不重叠，不用写样式，保证布局 */
+.nav-item a {
+    text-decoration: none; /* 删除默认自带的下划线 */
+}
+/* 总结：浏览器中，原本垂直排列的导航项（首页、菜单、订座），变成“横向均匀分布”，没有上下重叠，这就是Flex的核心作用 */
+
+
+/* C.用Flex实现“页脚两栏布局”，实现页脚“左侧logo + 右侧信息”的左右两栏布局 */
+.page-footer {  /* 页脚容器，开启Flex，实现左右两栏 */
+    display: flex;
+    justify-content: space-between; /* 子元素两端对齐（左logo，右信息） */
+    align-items: center; /* 子元素垂直居中，避免logo和文字上下错位 */
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.footer-info {
+    text-align: right; /* 页脚信息右对齐 */
+}
+/* 总结：利用Flex布局使页脚Logo在左，信息在右，对齐且美观 */
+
+
+/* D.用Flex实现“评价列表横向排列” */
+.review-list { /* 本身是容器 */
+    display: flex;
+    justify-content: space-around; /* 关键属性：均匀分布 */
+    gap: 20px; /* 两个卡片之间的间距 */
+    margin-top: 20px;
+}
+
+.review-card { /* 这是容器里的存放卡片内容的另一个盒子 */
+    max-width: 500px;
+    padding: 10px;
+}
+/* 总结：两个用户评价卡片从垂直排列变为“横向均匀分布”，没有重叠，运用了Flex布局 */
+
+
+/* E.用Grid实现“三栏卡片等分” */
+.content-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 核心属性：3列，每列等分空间（1fr） */
+    gap: 30px;
+    margin: 30px 20px;
+}
+
+.content-card {
+    padding: 20px;
+}
+
+.card-img {
+    width: 100%; /* 设置100%宽度，铺满卡片，避免图片溢出 */
+    height: 250px; /* 固定高度，统一卡片样式 */
+}
+/* 总结：三个内容卡片（夏季菜单、在线订座、营业时间），变成「三栏等分排列」，每一栏宽度相同，间距均匀，没有左右滑动。 */
+
+/* ↑更新：2026.1.15 */
+
