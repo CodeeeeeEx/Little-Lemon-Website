@@ -1,16 +1,23 @@
-/* 定义CSS全局变量，统一样式，方便修改，后续所有颜色都用这些变量，不用重复写色值，后续修改只改这里就能全局变色。 */
+/* 定义CSS全局变量，统一样式，方便修改，后续所有效果都用这些变量，不用重复写，后续修改只改这里就能全局变化。 */
 :root {
+    /* 颜色 */
     --primary-color: #4CAF50;
+    --secondary-color: #FFC107;
     --white-color:#FFFFFF;
     --gray-color:#666666;
     --light-color:#F9FBE7;
+    --dark-color:#2E7D32;
+    /* 全局过渡时间，0.3秒完成动画 */
+    --transition-duration: 0.3s;
+    /* 阴影，提升元素层次感，降低视觉突兀感 */
+    --shadow-color: rgba(0,0,0,0.1);
 }
 
 /* 网页全局配置效果 */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* 盒模型：将边框（border）和内边距（padding）计入元素的宽高总和（重点：解决盒模型布局错乱问题） */
 }
 
 body { /* 配置全局文本样式，盒模型+字体 ↓ */
@@ -22,83 +29,338 @@ body { /* 配置全局文本样式，盒模型+字体 ↓ */
     background-color: var(--light-color); /* 页面色同样也是用变量 */
 }
 
-.main-nav {
-    width: 100%;
-    max-width: 600px;
-    margin:0 auto; /* 导航栏水平居中 */
-}
-
-.nav-list {
-    display: flex;
-    justify-content: space-around; /* 关键属性：子元素均匀分布，左右无间距 */
-    list-style: none; /* 删除默认列表符号，美化效果 */
-    gap: 10px; /* 子元素之间的间距 */
-}
-
-.nav-item a {
-    text-decoration: none; /* 删除默认自带的下划线 */
-    color:var(--gray-color);
-    font-size: 1.1rem;
+.visually-hidden {  /* 无障碍功能 */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
 }
 
 .page-header {
     background-color: var(--white-color);
     padding: 20px 30px;
     margin-bottom: 20px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    display: flex;            /* 启动Flex弹性盒子布局，否则无法生成布局效果 */
+    flex-direction: column;  /* 设置Flex子元素排列方向为垂直列 */
+    align-items: center;    /* 子元素在交叉轴（水平方向）上居中对齐 */
+    gap: 15px; /* 开启弹性盒子后调整间隙 */
 }
 
-.page-footer {  
+.logo-container {  /* logo容器的样式 */
     display: flex;
-    justify-content: space-between; /* 子元素两端对齐（左logo，右信息） */
-    align-items: center; /* 子元素垂直居中，避免logo和文字上下错位 */
-    padding: 30px;
-    margin-top: 30px;
-    background-color: var(--white-color);
+    align-items: center;
+    gap: 12px; /* 与标题的间距 */
 }
 
-.footer-info {
-    text-align: right; /* 页脚信息右对齐 */
+.main-logo {    /* 主logo的样式 */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* 边框圆角设为50%，将方形图片转为圆形 */
+    object-fit: cover;  /* 图片自适应裁剪，保持图片比例不变，避免拉伸变形 */
 }
 
-.review-list { /* 本身是容器 */
+.logo-title {
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700; /* 设置字体粗细，700为粗体 */
+}
+
+.main-nav {
+    width: 100%;
+    max-width: 600px;
+}
+
+.nav-list {
     display: flex;
-    justify-content: space-around; /* 关键属性：均匀分布 */
-    gap: 20px; /* 两个卡片之间的间距 */
-    margin-top: 20px;
+    justify-content: space-around; /* 关键属性：子元素均匀分布，左右无间距 */
+    list-style: none; /* 删除默认列表符号，美化效果 */
 }
 
-.review-card { /* 这是容器里的存放卡片内容的另一个盒子 */
-    max-width: 500px;
-    padding: 10px;
+.nav-link {
+    text-decoration: none;
+    color: var(--gray-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all var(--transition-duration) ease-in-out;
+}
+
+.nav-link:hover {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
+.nav-link:active { /* 导航链接active伪类：鼠标点击激活时的样式 */
+    background-color: var(--dark-color);
+    transform: scale(0.98); /* 缩放变换，点击时轻微缩小，模拟按钮按压效果 */
+}
+
+.nav-link.current { /* 导航当前页样式：.nav-link.current类，多类名选择器，匹配当前页导航链接 */
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
+.promo-banner {
+    margin: 30px 20px;
+    height: 350px;
+    background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+               url("https://picsum.photos/1400/350?img=488"); /* 背景样式：线性渐变遮罩 + 背景图片，实现图片暗化效果，提升文字可读性（核心：背景图与渐变的结合） */
+    background-size: cover;  /* 背景图铺满整个元素，保持图片比例（课程核心：背景图尺寸设置） */
+    background-position: center;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 子元素在主轴（水平方向）上左对齐（课程核心：Flex布局的对齐方式） */
+    padding: 0 50px;
+}
+
+.banner-content {
+    color: var(--white-color); /* 文字颜色为白色，与暗化背景形成对比（知识点：文本样式设置） */
+    max-width: 600px;
+}
+
+.banner-title {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+}
+
+.banner-desc {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.banner-btn {
+    display: inline-block; /* 转换为行内块元素，既可以横向排列，又可以设置宽高和内外边距（核心：元素显示模式转换） */
+    padding: 12px 30px;
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: all var(--transition-duration) ease;
+}
+
+.banner-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.nav-item a {
+    text-decoration: none; /* 删除默认自带的下划线 */
+    color:var(--gray-color);
+    font-size: 1.1rem;
+    padding: 8px 16px; /* 扩大点击区域，方便用户操作 */
+    border-radius: 20px;
+    transition: all var(--transition-duration) ease-in-out; /* 关键：开启平滑过渡，所有样式变化都用0.3秒 */
+}
+
+.nav-item a:hover {
+    color:var(--white-color);
+    background-color: var(--primary-color);
+}
+
+.banner-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    transition: all var(--transition-duration) ease; /* 开启全局过渡 */
+}
+
+.banner-btn:hover {
+    background-color: #2E7D32;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
 }
 
 .content-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 核心属性：3列，每列等分空间（1fr） */
     gap: 30px;
-    margin: 30px 20px;
+    margin: 50px 20px;
 }
 
 .content-card { /* 美化卡片样式，盒模型+类选择器 */
     padding: 25px;
     background-color: var(--white-color);
-    border-radius: 8px;
-    margin-bottom: 10px; /* 下外边距，避免卡片之间垂直重叠（Grid已控制，这里是冗余备份） */
+    border-radius: 12px;
+    transition: transform var(--transition-duration) ease;  /* 关键：只针对transform属性过渡 */
+    box-shadow: 0 3px 10px var(--shadow-color);
 }
 
-.card-img {
-    width: 100%; /* 设置100%宽度，铺满卡片，避免图片溢出 */
-    height: 250px; /* 固定高度，统一卡片样式 */
+.content-card:hover {
+    transform: translateY(-8px); /* 关键：垂直向上平移8px（负数=向上，正数=向下） */
+    box-shadow: 0 8px 20px var(--shadow-color);
 }
 
 .card-title {  /* 卡片标题：美化，用主色 */
-    color:var(--primary-color); /* 变量颜色，突出显示 */
+    color:var(--dark-color); /* 变量颜色，突出显示 */
     font-size: 1.5rem; /* 字体大小，rem相对单位，适配设备 */
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--light-color);  /* 底部边框，分隔标题与内容，提升层次感（核心：边框样式的使用） */
+}
+
+.card-figure {
+    margin-bottom: 20px;
+}
+
+.card-img {
+    width: 100%;
+    height: 250px;
+    border-radius: 8px;
+    object-fit: cover; /* 图片自适应裁剪，保持比例不变，避免拉伸变形 */
+    margin-bottom: 8px;
+}
+
+.card-figcaption {
+    font-size: 0.9rem;
+    color: var(--gray-color);
+    text-align: center;
+    font-style: italic; /* 文本斜体，区分普通文本 */
 }
 
 .card-desc { /* 卡片描述：调整字体大小和行高 */
     font-size: 1rem;
+    margin-bottom: 25px;
     line-height: 1.7;
-    margin-top: 10px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: color var(--transition-duration) ease;
+}
+
+.card-link:hover {
+    color: var(--dark-color);
+    text-decoration: underline; /* 悬浮时添加下划线，提示可点击 */
+}
+
+.business-hours {
+    list-style: none; /* 清除列表默认项目符号 */
+    margin-top: 15px;
+    line-height: 2;
+}
+
+.hours-item {
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--light-color);  /* 底部虚线边框，分隔列表项 */
+}
+
+.review-section {
+    margin: 60px 20px 30px;
+    padding: 30px;
+    background-color: var(--white-color);
+    border-radius: 12px;
+    box-shadow: 0 3px 10px var(--shadow-color);
+}
+
+.review-title {
+    color: var(--dark-color);
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.review-list { /* 本身是容器 */
+    display: flex;
+    justify-content: space-around; /* 关键属性：均匀分布 */
+    gap: 20px; /* 两个卡片之间的间距 */
+}
+
+.review-card { /* 这是容器里的存放卡片内容的另一个盒子 */
+    max-width: 500px;
+    padding: 20px;
+    background-color: var(--light-color);
+    border-radius: 8px;
+}
+
+.review-content {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.review-author {
+    font-size: 0.9rem;
+    color: var(--dark-color);
+    font-weight: 500;
+    text-align: right;
+}
+
+.page-footer {  
+    margin: 40px 20px 20px;
+    padding: 30px;
+    display: flex;
+    border-radius: 12px;
+    box-shadow: 0 -2px 8px var(--shadow-color);
+    justify-content: space-between; /* 子元素两端对齐（左logo，右信息） */
+    align-items: center; /* 子元素垂直居中，避免logo和文字上下错位 */
+    background-color: var(--white-color);
+}
+
+.footer-logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.footer-info {
+    text-align: right;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    color: var(--gray-color);
+    margin-bottom: 5px;
+}
+
+.contact-info {
+    font-size: 0.8rem;
+    color: var(--gray-color);
+    font-style: normal;
+}
+
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+    .content-container {
+        grid-template-columns: 1fr;
+        gap:20px;
+        margin: 30px 10px;
+    }
+    .review-list {
+        flex-direction: column;
+        gap: 15px;
+        padding: 0 10px;
+    }
+    .page-footer {
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+        text-align: center;
+    }
+    .page-header {
+        padding: 15px 10px;
+    }
+    .nav-list {
+        gap:5px;
+    }
 }
